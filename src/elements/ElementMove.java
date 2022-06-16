@@ -17,28 +17,50 @@ public abstract class ElementMove extends Element  {
     
     private int movDirection = STOP;
     
+    /**
+     * Coleta a direção de movimento do elemento
+     * @return int movDirection
+     */
     public int getMoveDirection(){
     	return movDirection;
     }
     
+    /**
+     * Construtor da Classe 'ElementMove' que recebe o nome de uma imagem e instância um objeto
+     * que extende a classe Elemento.
+     * @param imageName
+     */ 
     public ElementMove(String imageName) {
         super(imageName);
     }
     
      
-    
+    /**
+     * Método abstrato que insere e/ou movimenta o objeto na tela
+     * @param g
+     */
     abstract public void autoDraw(Graphics g);
     
     
-
+    /**
+     * Retorna o valor do atributo 'pos' para o valor anterior ao atual
+     */
     public void backToLastPosition(){
         this.pos.comeBack();
     }
     
+    /**
+     * Altera o valor do atributo 'movDirection' de um objeto do tipo ElementMove
+     * @param direction
+     */
     public void setMovDirection(int direction) {
         movDirection = direction;
     }
     
+    /**
+     * Altera o valor do atributo 'movDirection' de um objeto do tipo ElementMove, dependendo da escolha do
+     * jogador.
+     */
     public void move() {
         switch (movDirection) {
             case MOVE_LEFT:
@@ -57,18 +79,31 @@ public abstract class ElementMove extends Element  {
                 break;
         }
     }
+    /**
+     * Altera o valor do atributo 'pos' de um objeto do tipo ElementMove, movendo uma casa
+     * para cima.
+     */
     public boolean moveUp() {
         return this.pos.moveUp();
     }
-
+    /**
+     * Altera o valor do atributo 'pos' de um objeto do tipo ElementMove, movendo uma casa
+     * para baixo.
+     */
     public boolean moveDown() {
         return this.pos.moveDown();
     }
-
+    /**
+     * Altera o valor do atributo 'pos' de um objeto do tipo ElementMove, movendo uma casa
+     * para direita.
+     */
     public boolean moveRight() {
         return this.pos.moveRight();
     }
-
+    /**
+     * Altera o valor do atributo 'pos' de um objeto do tipo ElementMove, movendo uma casa
+     * para esquerda.
+     */
     public boolean moveLeft() {
         return this.pos.moveLeft();
     }

@@ -15,7 +15,11 @@ import javax.swing.ImageIcon;
 
 public abstract class Ghost extends ElementMove {
     
-    
+	/**
+     * Construtor da Classe 'Ghost' que recebe o nome de uma imagem e instância um objeto
+     * que extende a classe Elemento que se move.
+     * @param imageName
+     */ 
     public Ghost(String imageName) {
         super(imageName);
     }
@@ -24,6 +28,10 @@ public abstract class Ghost extends ElementMove {
     
     abstract public void autoDraw(Graphics g);
     
+    /**
+     * Altera a imagem do fantasma para azul, além de deixá-lo Transponível e Mortal.
+     * @param imageName
+     */
     public void changeGhosttoBlue(String imageName) {
         this.isTransposable = true;
         this.isMortal = true;
@@ -40,7 +48,11 @@ public abstract class Ghost extends ElementMove {
             System.out.println(ex.getMessage());
         }
     }
-
+    
+    /**
+     * Retorna o fantasma a sua cor padrão, deixando-o imortal.
+     * @param imageName
+     */
     public void changeGhosttoNormal(String imageName) {
         this.isTransposable = true;
         this.isMortal = false;
@@ -57,7 +69,10 @@ public abstract class Ghost extends ElementMove {
             System.out.println(ex.getMessage());
         }
     }
-
+    
+    /**
+     * Faz com que o fantasma siga o pacman, dependendo de sua direção de movimento
+     */
     protected void followPacman() {
     	Pacman pacman=Drawing.getGameScreen().getPacman();
         Position posPacman=pacman.getPos();
@@ -73,7 +88,11 @@ public abstract class Ghost extends ElementMove {
     
     
 
-    
+    /**
+     * O Fantasma segue o pacman horizontalmente (para esquerda ou direita)
+     * @param movDirectionPacman
+     * @param posPacman
+     */
 	protected void followPacmanHorizontal(int movDirectionPacman,Position posPacman) {
        	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -88,6 +107,11 @@ public abstract class Ghost extends ElementMove {
     		} 
     	}
 	}
+	/**
+	 * O Fantasma segue o pacman verticalmente (para cima ou para baixo)
+	 * @param movDirectionPacman
+	 * @param posPacman
+	 */
 	protected void followPacmanVertical(int movDirectionPacman, Position posPacman) {
     	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -103,6 +127,9 @@ public abstract class Ghost extends ElementMove {
     	}		
 	} 
 	
+	/**
+	 * Faz com que o fantasma fuja do pacman, dependendo de sua direção de movimento
+	 */
     protected void escapePacman() {
     	Pacman pacman=Drawing.getGameScreen().getPacman();
         Position posPacman=pacman.getPos();
@@ -118,7 +145,11 @@ public abstract class Ghost extends ElementMove {
     
     
 
-    
+    /**
+     * O Fantasma foge do pacman horizontalmente (para esquerda e direita)
+     * @param movDirectionPacman
+     * @param posPacman
+     */
 	protected void escapePacmanHorizontal(int movDirectionPacman,Position posPacman) {
        	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -133,6 +164,11 @@ public abstract class Ghost extends ElementMove {
     		} 
     	}
 	}
+	/**
+	 * O Fantasma foge do pacman verticalmente (para cima e para baixo)
+	 * @param movDirectionPacman
+	 * @param posPacman
+	 */
 	protected void escapePacmanVertical(int movDirectionPacman, Position posPacman) {
     	Random gerador = new Random();
     	if(gerador.nextInt(11)>8){
@@ -147,6 +183,9 @@ public abstract class Ghost extends ElementMove {
     		} 
     	}		
 	} 
+	/**
+	 * Faz com que o fantasma se mova aleatóriamente pelo labirinto
+	 */
 	protected void moveRandom() {
     	Random gerador = new Random();
     	this.setMovDirection(gerador.nextInt(5));		

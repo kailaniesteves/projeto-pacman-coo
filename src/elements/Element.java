@@ -14,7 +14,12 @@ public abstract class Element {
     protected Position pos;
     protected boolean isTransposable; 
     protected boolean isMortal;       
-
+    
+    /**
+     * Construtor da Classe 'Element' que recebe o nome de uma imagem e instância um objeto
+     * do tipo Elemento.
+     * @param imageName
+     */
     protected Element(String imageName) {
         this.pos = new Position(1, 1);
         this.isTransposable = true;
@@ -42,25 +47,48 @@ public abstract class Element {
         else
             return false;
     }
-
+    
+    /**
+     * Coleta a posição de um objeto no labirinto do jogo.
+     * @return String com posição (x,y)
+     */
     public String getStringPosition() {
         return ("(" + pos.getX() + ", " + pos.getY() + ")");
     }
+    /**
+     * Coleta o atributo 'pos' de um objeto do tipo Element.
+     * @return Position pos
+     */
     public Position getPos(){
     	return pos;
     }
+    /**
+     * Altera o valor atributo 'pos' de um objeto do tipo Element.
+     * @return boolean, verdadeiro se a alteração foi feita e falso se não
+     */
     public boolean setPosition(double x, double y) {
         return pos.setPosition(x, y);
     }
-
+    
+    /**
+     * Coleta o valor do atributo 'isTransposable' de um objeto do tipo Element.
+     * @return boolean, verdadeiro se o objeto é transponível e falso se não.
+     */
     public boolean isTransposable() {
         return isTransposable;
     }
-
+    
+    /**
+     * Coleta o valor do atributo 'isMortal' de um objeto do tipo Element.
+     * @return boolean, verdadeiro se o objeto é mortal e falso se não.
+     */
     public boolean isMortal() {
         return isMortal;
     }
     
+    /**
+     * Altera o valor do atributo 'isTransposable' de um objeto do tipo Element.
+     */
     public void setTransposable(boolean isTransposable) {
         this.isTransposable = isTransposable;
     }

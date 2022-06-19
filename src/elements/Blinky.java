@@ -23,7 +23,7 @@ public class Blinky extends Ghost  {
 	 */
     @Override
     public void autoDraw(Graphics g){
-    	if(this.isMortal){
+    	if(!this.isMortal){
     		followPacman();
     	}
     	else{

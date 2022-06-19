@@ -78,6 +78,13 @@ public class GameController {
         }
     }
     
+    /**
+     * Checa se o pacman está sobrepondo algum fantasma no tabuleiro
+     * @param elements
+     * @param pacman
+     * @param numberGhost
+     * @return boolean, com verdadeiro caso o pacman esteja sobrepondo alguém e falso se não
+     */
 	private boolean checkOverlapGhostPacman(ArrayList<Element> elements, Pacman pacman,int numberGhost) {
         boolean overlapGhostPacman=false;
         for (int i=1;i<=numberGhost;i++){
@@ -87,6 +94,11 @@ public class GameController {
         }
         return overlapGhostPacman;
 	}
+	/**
+	 * Checa se algum objeto da classe Element está sobrepondo a parede
+	 * @param elements
+	 * @param numberGhost
+	 */
 	private void checkElementColideWall(ArrayList<Element> elements, int numberGhost) {
     	for (int i=0;i<=numberGhost;i++){
         	ElementMove elementMove = (ElementMove)elements.get(i);

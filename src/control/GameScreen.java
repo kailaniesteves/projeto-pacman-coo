@@ -20,27 +20,26 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.Console;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class GameScreen extends javax.swing.JFrame implements KeyListener {
+import java.io.*;
+import java.util.List;
+
+public class GameScreen extends javax.swing.JFrame implements KeyListener, Serializable {
     
     private Pacman pacman;
     private ArrayList<Element> elemArray;
     private final GameController controller = new GameController();
     private Stage stage;
     int cont = 0; 
-    String fileName="jogo.ser";
+    String fileName="NewFile.txt";
     
+    /**
+     * Construtor da classe GameScreen, inicializa o jogo ou abre um jogo novo
+     */
     public GameScreen() {
     	Main.time = System.currentTimeMillis();
         Drawing.setGameScreen(this);
@@ -76,10 +75,19 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
         }
     }
     
+    /**
+     * Coleta o valor do atributo 'pacman' da classe GameScreen
+     * @return Pacman pacman
+     */
     public Pacman getPacman(){
     	return pacman;
     }    
     
+    /**
+     * Insere as posições iniciais de todos os movimentos do jogo, baseado em uma matriz de nível e
+     * popula a ArrayList 'elemArray'
+     * @param matrix
+     */
     private void fillInitialElemArrayFromMatrix(int [][]matrix) {
 	 	pacman = new Pacman("pacman.png");
         pacman.setPosition(1,1);
@@ -129,20 +137,49 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
 
 		
 	}
-
+    
+    /**
+     * Abre um jogo salvo anteriormente pelo usuário
+     * @param fileName
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 	private void openSavedGame(String fileName) throws FileNotFoundException,IOException, ClassNotFoundException{
-		        /*Apagar o throw e implementar o método openSavedGame aqui*/
-		        throw new FileNotFoundException();                 
+		try {
+			FileInputStream fluxo = new FileInputStream("teste.ser");
+			ObjectInputStream objarq = new ObjectInputStream(fluxo);
+			ArrayList<Element> kailani = (ArrayList) objarq.readObject();
+			this.elemArray = kailani;
+			pacman = (Pacman) elemArray.get(0);
+			this.stage = new Stage(Main.level);
+			objarq.close(); 
+		}
+		catch(IOException ioExc){
+			System.out.println(ioExc);
+		}
     }
-
+	
+	/**
+	 * Adiciona um objeto do tipo Element na ArrayList elemArray
+	 * @param elem
+	 */
 	public final void addElement(Element elem) {
         elemArray.add(elem);
     }
     
+	/**
+	 * Remove um objeto do tipo Element da ArrayList elemArray
+	 * @param elem
+	 */
     public void removeElement(Element elem) {
         elemArray.remove(elem);
     }
     
+    /**
+     * Reinicia o jogo, limpando o atributo elemArray e populando novamente a lista com as posições padrão
+     * @param numberLifes
+     */
     public void reStartGame(int numberLifes){
     	elemArray.clear();
     	elemArray = new ArrayList<Element>();
@@ -208,14 +245,34 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             pacman.setMovDirection(Pacman.STOP);
         } else if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-            saveElemArrayandStage(); 
- 
+            try {
+				saveElemArrayandStage();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
         } 
     }
     
-    private void saveElemArrayandStage() {
-    	System.out.println("Falta implementar");
- 	}
+ 
+    /**
+     * Salva os elementos quando o usuário pressiona 'Ctrl+S'
+     * @throws IOException
+     */
+    private void saveElemArrayandStage() throws IOException {
+    	
+    	try { 
+    		FileOutputStream fluxo = new FileOutputStream("teste.ser");
+    		ObjectOutputStream objarq = new ObjectOutputStream(fluxo);
+    		objarq.writeObject(elemArray);
+    		objarq.close();
+    	} 
+    	catch (IOException ioExc) {
+    		System.out.println(ioExc);
+    	}
+    }
+    
+
 
 	/**
      * This method is called from within the constructor to initialize the form.
@@ -261,4 +318,5 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener {
 	public void dispose(){
 		super.dispose();
 	}
+	
 }

@@ -37,10 +37,7 @@ public class GameController {
 
         if(overlapGhostPacman) { 
         	pacman.setNumberLifes(pacman.getLifes()-1);
-        	if(pacman.getLifes()>0){
-        		Main.gamePacMan.reStartGame(pacman.getLifes());
-        	}
-        	else{
+        	if(pacman.getLifes() == 0){
         		Main.gamePacMan.dispose();
         		JOptionPane.showMessageDialog(null, "Fim do jogo");
         		System.exit(0);

@@ -167,6 +167,10 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener, Seria
 	public final void addElement(Element elem) {
         elemArray.add(elem);
     }
+	
+	public ArrayList<Element> getElemArray(){
+		return elemArray;
+	}
     
 	/**
 	 * Remove um objeto do tipo Element da ArrayList elemArray

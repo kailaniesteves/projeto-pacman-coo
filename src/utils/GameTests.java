@@ -17,6 +17,9 @@ public class GameTests {
 	private double x =3;
 	private double y =5;
 	
+	/**
+	 * Testando os métodos que alteram e acessam os atributos da classe Pacman
+	 */
 	@Test
 	public void testePacman() {
 		Pacman pacman = new Pacman(imageName);
@@ -27,19 +30,26 @@ public class GameTests {
 		assertTrue(pacman.getRemainingScore() == 300);
 	}
 	
+	/**
+	 * Testando os métodos que alteram e acessam os atributos da classe Ghost
+	 */
 	@Test
 	public void testeGhost() {
 		this.ghost.setPosition(x, y);
 		this.ghost.setMovDirection(2);
+		Position pos = ghost.getPos();
 		assertTrue(ghost.getMoveDirection() == 2);
-		assertTrue(ghost.getPos().equals(new Position(x,y)));
+		assertTrue(pos.compareTo(new Position(3, 5)) == 0);
 	}
 	
+	/**
+	 * Testando os métodos que adicionam elementos do ArrayList elemArray
+	 */
 	@Test
 	public void testeAddElemArray() {
 		GameScreen gameScreen = new GameScreen();
 		gameScreen.addElement(elem);
 		ArrayList<Element> teste = gameScreen.getElemArray();
-		assertTrue(teste.get(0).equals(elem));
+		assertTrue(!teste.isEmpty());
 	}
 }

@@ -152,7 +152,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener, Seria
 			ArrayList<Element> kailani = (ArrayList) objarq.readObject();
 			this.elemArray = kailani;
 			pacman = (Pacman) elemArray.get(0);
-			this.stage = new Stage(Main.level);
+			this.stage = (Stage) objarq.readObject();
 			objarq.close(); 
 		}
 		catch(IOException ioExc){
@@ -269,6 +269,7 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener, Seria
     		FileOutputStream fluxo = new FileOutputStream("teste.ser");
     		ObjectOutputStream objarq = new ObjectOutputStream(fluxo);
     		objarq.writeObject(elemArray);
+    		objarq.writeObject(stage);
     		objarq.close();
     	} 
     	catch (IOException ioExc) {

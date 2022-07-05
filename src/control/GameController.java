@@ -37,11 +37,25 @@ public class GameController {
 
         if(overlapGhostPacman) { 
         	pacman.setNumberLifes(pacman.getLifes()-1);
-        	if(pacman.getLifes() == 0){
-        		Main.gamePacMan.dispose();
-        		JOptionPane.showMessageDialog(null, "Fim do jogo");
-        		System.exit(0);
+        	if(pacman.getLifes() > 0) {
+        		for(int i = 0;i<Consts.NUM_CELLS;i++) {
+					for(int j = 0;j<Consts.NUM_CELLS;j++) {
+						switch(matrix[i][j]) {
+							case 9:
+								pacman.setPosition(i,j);
+								break;
+							default:
+								break;
+						}
+					}
+				}
+				pacman.setMovDirection(0);
         	}
+			else {
+				Main.gamePacMan.dispose();
+				JOptionPane.showMessageDialog(null, "Fim do jogo");
+				System.exit(0);
+			}
         		
         }
         else if(pacman.getNumberDotstoEat() == 0){  

@@ -25,6 +25,9 @@ public class InitialScreen extends javax.swing.JFrame {
 	
 	private JComboBox<String> box;
 	
+	/**
+	 * Construtor da classe InitialScreen()
+	 */
 	public InitialScreen(){
 		configureInitialScreen();
 		//configureStartButton();

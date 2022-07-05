@@ -56,12 +56,18 @@ public class Pacman extends ElementMove  {
 	public int getNumberDotstoEat() {
 		return this.numberDotstoEat;
 	}
-	
+	/**
+	 * Coleta o momento exato que o pacman comeu uma power pellet
+	 * @return long
+	 */
 	public long getStartTimePower() {
 		return this.startTimePower;
 	}
 	
-	
+	/**
+	 * Altera o atributo 'setStartTimePower' da classe Pacman
+	 * @param start
+	 */
 	public void setStartTimePower(long start){
 		this.startTimePower=start;
 	}

@@ -38,6 +38,11 @@ public abstract class Element implements Serializable{
         }
     }
     
+    /**
+     * Verifica se o elemento parametro está sobrepondo esse na tela do jogo
+     * @param elem
+     * @return true caso esteja sobrepondo e false caso contrário
+     */
     public boolean overlap(Element elem) {
         double xDist = Math.abs(elem.pos.getX() - this.pos.getX());
         double yDist = Math.abs(elem.pos.getY() - this.pos.getY());

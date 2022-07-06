@@ -30,6 +30,7 @@ public class GameController {
         }
         
     }
+    
     /**
      * Faz verifições constantes dos elementos do jogo, posição, sobreposição, ganho de pontos, número de vidas, etc.
      * @param elements
@@ -71,7 +72,7 @@ public class GameController {
         }
         else if(pacman.getNumberDotstoEat() == 0){  
         	Main.level += 1;
-        	if(Main.level>=4){
+        	if(Main.level>=5){//Cria os níveis após "passar de fase" (Comer todos os dots)
         		Main.gamePacMan.dispose();
         		JOptionPane.showMessageDialog(null, "Fim do jogo");
         		System.exit(0);
@@ -117,7 +118,7 @@ public class GameController {
         return overlapGhostPacman;
 	}
 	/**
-	 * Checa se algum objeto que estende ElementMove está sobrepondo a parede
+	 * Checa se algum objeto da classe Element está sobrepondo a parede
 	 * @param elements
 	 * @param numberGhost
 	 */
@@ -132,6 +133,7 @@ public class GameController {
         }
 		
 	}
+	
 	/**
 	 * Checa se o pacman comeu um fantasma, calcula e soma os pontos ao comer pac-dots, frutas,  
 	 * altera a cor dos fantasmas ao comer um power pellet e remove as frutas da tela depois do
@@ -221,6 +223,7 @@ public class GameController {
         }
 		
 	}
+	
 	/**
 	 * Procura por uma posição válida na matriz do jogo, que não esteja sobrepondo uma parede
 	 * @param matrix
@@ -238,6 +241,7 @@ public class GameController {
 		pos.setPosition(x, y);
 		return pos;
 	}
+	
 	/**
 	 * Verifica se o tempo dos fantasmas voltarem a ser mortais depois de um power pellet, caso sim,
 	 * configura todos eles para a cor e comportamentos normais
@@ -277,7 +281,6 @@ public class GameController {
 
 		
 	}
-	
 	/**
 	 * Verifica se a poição de um elemento é válida ou sobrepõe algum outro
 	 * @param elemArray

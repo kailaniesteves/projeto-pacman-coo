@@ -21,7 +21,7 @@ import utils.Consts;
 public class InitialScreen extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	private final String nomeImagemInicial = "inicialimagem.png";
-	private static String[] levels = { "Level 1", "Level 2", "Level 3" };
+	private static String[] levels = { "Level 1", "Level 2", "Level 3", "Level 4" }; 
 	
 	private JComboBox<String> box;
 	
@@ -32,7 +32,7 @@ public class InitialScreen extends javax.swing.JFrame {
 		configureInitialScreen();
 		//configureStartButton();
 		//configureOpenButton();
-		configureComboBox();
+		//configureComboBox();
 	}
 	
 	private void configureInitialScreen(){
@@ -40,24 +40,67 @@ public class InitialScreen extends javax.swing.JFrame {
 		
 		JMenuBar menuBar = new JMenuBar();//Cria a barra de menu
 
-		JMenu abaMenu = new JMenu("Menu");//Adiciona a aba "Menu"
+		JMenu abaMenu = new JMenu("Menu");//Adiciona as abas "Menu" e "Níveis"
+		JMenu abaNiveis = new JMenu("Níveis");
 		
 		//Criando itens para colocar dentro do menu
 		JMenuItem itemIniciar = new JMenuItem("Iniciar");
 		JMenuItem itemOpen = new JMenuItem("Abrir jogo salvo(Open)");
+		JMenuItem itemNivel1 = new JMenuItem("Nível 1");
+		JMenuItem itemNivel2 = new JMenuItem("Nível 2");
+		JMenuItem itemNivel3 = new JMenuItem("Nível 3");
+		JMenuItem itemNivel4 = new JMenuItem("Nível 4");
 		
+	
 		//Adicionando itens na aba
 		abaMenu.add(itemIniciar);
 		abaMenu.add(itemOpen);
+		abaNiveis.add(itemNivel1);
+		abaNiveis.add(itemNivel2);
+		abaNiveis.add(itemNivel3);
+		abaNiveis.add(itemNivel4);
 		
 		//Colocando a aba no menu
 		menuBar.add(abaMenu);
+		menuBar.add(abaNiveis);
 		
-		//Método que faz o jogo iniciar
-		itemIniciar.addActionListener(new ActionListener(){
+		//Faz o jogo iniciar ao clicar no botão "nível 1" do menu
+		itemNivel1.addActionListener(new ActionListener(){
 	        public void actionPerformed(ActionEvent e) {
 	        	Main.initialScreen.setVisible(false);  
 		    	Main.initialScreen.dispose();
+		    	Main.level = 1;
+				Main.startGame();
+	        }
+	    });
+
+		//Faz o jogo iniciar ao clicar no botão "nível 2" do menu
+		itemNivel2.addActionListener(new ActionListener(){
+	        public void actionPerformed(ActionEvent e) {
+	        	Main.initialScreen.setVisible(false);  
+		    	Main.initialScreen.dispose();
+		    	Main.level = 2;
+				Main.startGame();
+	        }
+	    });
+		
+
+		//Faz o jogo iniciar ao clicar no botão "nível 3" do menu
+		itemNivel3.addActionListener(new ActionListener(){
+	        public void actionPerformed(ActionEvent e) {
+	        	Main.initialScreen.setVisible(false);  
+		    	Main.initialScreen.dispose();
+		    	Main.level = 3;
+				Main.startGame();
+	        }
+	    });
+
+		//Faz o jogo iniciar ao clicar no botão "nível 4" do menu
+		itemNivel4.addActionListener(new ActionListener(){
+	        public void actionPerformed(ActionEvent e) {
+	        	Main.initialScreen.setVisible(false);  
+		    	Main.initialScreen.dispose();
+		    	Main.level = 4;
 				Main.startGame();
 	        }
 	    });
@@ -97,21 +140,7 @@ public class InitialScreen extends javax.swing.JFrame {
         //pack();
 	}
 
-	private void configureComboBox(){
-		box = new JComboBox<String>(levels);
-		box.setSize(100, 40);
-		box.setSelectedIndex(0);
-		box.setLocation(500, 10);
-		box.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent event){
-				if(event.getStateChange() == ItemEvent.SELECTED){ 
-					JComboBox<String> cb = (JComboBox<String>)event.getSource();
-					Main.level = cb.getSelectedIndex() + 1;
-				}
-			}			
-		});
-		add(box);
-	}
+
 
 	public class HandlerStartButton implements ActionListener{
 		public void actionPerformed(ActionEvent ev){

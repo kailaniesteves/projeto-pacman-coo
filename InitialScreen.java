@@ -32,7 +32,7 @@ public class InitialScreen extends javax.swing.JFrame {
 		configureInitialScreen();
 		//configureStartButton();
 		//configureOpenButton();
-		configureComboBox();
+		//configureComboBox();
 	}
 	
 	private void configureInitialScreen(){
@@ -140,21 +140,7 @@ public class InitialScreen extends javax.swing.JFrame {
         //pack();
 	}
 
-	private void configureComboBox(){
-		box = new JComboBox<String>(levels);
-		box.setSize(100, 40);
-		box.setSelectedIndex(0);
-		box.setLocation(500, 10);
-		box.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent event){
-				if(event.getStateChange() == ItemEvent.SELECTED){ 
-					JComboBox<String> cb = (JComboBox<String>)event.getSource();
-					Main.level = cb.getSelectedIndex() + 1;
-				}
-			}			
-		});
-		add(box);
-	}
+	
 
 	public class HandlerStartButton implements ActionListener{
 		public void actionPerformed(ActionEvent ev){

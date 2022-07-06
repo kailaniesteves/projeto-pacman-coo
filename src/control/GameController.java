@@ -13,6 +13,11 @@ import utils.Position;
 
 public class GameController {
 	
+	/**
+	 * Desenha todos os elementos na tela do jogo
+	 * @param elemArray
+	 * @param g
+	 */
     public void drawAllElements(ArrayList<Element> elemArray, Graphics g){
     	Pacman pacman=(Pacman) elemArray.get(0);
     	int numberGhost=pacman.getNumberGhosttoEat();
@@ -25,6 +30,12 @@ public class GameController {
         }
         
     }
+    /**
+     * Faz verifições constantes dos elementos do jogo, posição, sobreposição, ganho de pontos, número de vidas, etc.
+     * @param elements
+     * @param matrix
+     * @param cont
+     */
     public void processAllElements(ArrayList<Element> elements, int [][]matrix, int cont){
         if(elements.isEmpty())
             return;
@@ -106,7 +117,7 @@ public class GameController {
         return overlapGhostPacman;
 	}
 	/**
-	 * Checa se algum objeto da classe Element está sobrepondo a parede
+	 * Checa se algum objeto que estende ElementMove está sobrepondo a parede
 	 * @param elements
 	 * @param numberGhost
 	 */
@@ -121,6 +132,13 @@ public class GameController {
         }
 		
 	}
+	/**
+	 * Checa se o pacman comeu um fantasma, calcula e soma os pontos ao comer pac-dots, frutas,  
+	 * altera a cor dos fantasmas ao comer um power pellet e remove as frutas da tela depois do
+	 * tempo determinado.
+	 * @param elements
+	 * @param pacman
+	 */
 	private void checkPacmanEatSomeOneAndOrTimeFruittoDesappear(ArrayList<Element> elements, Pacman pacman) {
 
         Element eTemp;
@@ -178,6 +196,12 @@ public class GameController {
         }
         
 	}
+	/**
+	 * Checa se é o momento certo para uma fruta aparecer, se sim, configura sua posição
+	 * e adiciona ela ao elemArray
+	 * @param elements
+	 * @param matrix
+	 */
 	private void checkTimetoAppearFruit(ArrayList<Element> elements,  int [][]matrix) {
         
         long elapsedTime = System.currentTimeMillis()-Main.time;
@@ -197,7 +221,11 @@ public class GameController {
         }
 		
 	}
-	
+	/**
+	 * Procura por uma posição válida na matriz do jogo, que não esteja sobrepondo uma parede
+	 * @param matrix
+	 * @return Position 
+	 */
 	private Position getValidRandomPositionMatrix(int[][] matrix) {
 		Random gerador = new Random();
 		int x;
@@ -210,6 +238,12 @@ public class GameController {
 		pos.setPosition(x, y);
 		return pos;
 	}
+	/**
+	 * Verifica se o tempo dos fantasmas voltarem a ser mortais depois de um power pellet, caso sim,
+	 * configura todos eles para a cor e comportamentos normais
+	 * @param elements
+	 * @param pacman
+	 */
 	private void checkTimeGhostBeNormal(ArrayList<Element> elements,
 			Pacman pacman) {
         long start=pacman.getStartTimePower();
@@ -243,7 +277,13 @@ public class GameController {
 
 		
 	}
-
+	
+	/**
+	 * Verifica se a poição de um elemento é válida ou sobrepõe algum outro
+	 * @param elemArray
+	 * @param elem
+	 * @return true se é válida e false caso contrário
+	 */
 	public boolean isValidPosition(ArrayList<Element> elemArray, Element elem){
         Element elemAux;
         for(int i = 1; i < elemArray.size(); i++){

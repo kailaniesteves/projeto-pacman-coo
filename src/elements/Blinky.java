@@ -23,11 +23,18 @@ public class Blinky extends Ghost  {
 	 */
     @Override
     public void autoDraw(Graphics g){
-    	if(!this.isMortal){
-    		followPacman();
-    	}
-    	else{
-    		escapePacman();
+    	Pacman pacman=Drawing.getGameScreen().getPacman();
+
+        if(pacman.getMoveDirection()==0) {
+        	moveRandom();
+        }
+        else {
+	    	if(!this.isMortal){
+	    		followPacman();
+	    	}
+	    	else{
+	    		escapePacman();
+	    	}
     	}
         Drawing.draw(g, this.imageIcon, pos.getY(), pos.getX());
     }

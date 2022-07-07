@@ -16,6 +16,10 @@ public class Position implements Serializable, Comparable<Position>{
     private double previousX;
     private double previousY;
     
+    public Position getPreviousPosition() {
+    	return new Position(this.previousX, this.previousY);
+    }
+    
     /**
      * Construtor da classe Position
      * @param x

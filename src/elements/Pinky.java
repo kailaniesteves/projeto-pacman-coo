@@ -26,18 +26,24 @@ public class Pinky extends Ghost  {
     	Pacman pacman=Drawing.getGameScreen().getPacman();
         Position posPacman=pacman.getPos();
         int movDirectionPacman=pacman.getMoveDirection();
-        if (movDirectionPacman==MOVE_LEFT ||movDirectionPacman==MOVE_RIGHT){
-        	if(!this.isMortal){
-        		followPacmanHorizontal(movDirectionPacman, posPacman);
-        	}
-        	else{
-        		escapePacmanHorizontal(movDirectionPacman, posPacman);
-        	}
-        }
-        else if(movDirectionPacman==MOVE_DOWN ||movDirectionPacman==MOVE_UP){
+        
+        if(movDirectionPacman==STOP) {
         	moveRandom();
-
-        	}
+        }
+        else {
+	        if (movDirectionPacman==MOVE_LEFT ||movDirectionPacman==MOVE_RIGHT){
+	        	if(!this.isMortal){
+	        		followPacmanHorizontal(movDirectionPacman, posPacman);
+	        	}
+	        	else{
+	        		escapePacmanHorizontal(movDirectionPacman, posPacman);
+	        	}
+	        }
+	        else if(movDirectionPacman==MOVE_DOWN ||movDirectionPacman==MOVE_UP){
+	        	moveRandom();
+        		}
+	    }
+        
         Drawing.draw(g, this.imageIcon, pos.getY(), pos.getX());
 
     }

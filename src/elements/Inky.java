@@ -29,18 +29,22 @@ public class Inky extends Ghost  {
         Position posPacman=pacman.getPos();
         double distancia=posPacman.distance(this.pos);
         
-        if(distancia>Consts.DISTANCEGHOST){
+        if(pacman.getMoveDirection()==STOP) {
         	moveRandom();
         }
-        else{
-        	if(!this.isMortal){
-        		followPacman();
-        	}
-        	else{
-        		escapePacman();
-        	}
-        }
-        	
+        else {
+	        if(distancia>Consts.DISTANCEGHOST){
+	        	moveRandom();
+	        }
+	        else{
+	        	if(!this.isMortal){
+	        		followPacman();
+	        	}
+	        	else{
+	        		escapePacman();
+	        	}
+	        }
+        }	
         Drawing.draw(g, this.imageIcon, pos.getY(), pos.getX());
 
     }

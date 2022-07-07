@@ -82,7 +82,7 @@ public class GameController {
         	}
         }
         else{
-	        checkPacmanEatSomeOneAndOrTimeFruittoDesappear(elements,pacman);
+	        checkPacmanEatSomeOneAndOrTimeFruitOrScoretoDesappear(elements,pacman);
 	        checkTimetoAppearFruit(elements,matrix);
 	        checkTimeGhostBeNormal(elements,pacman);
 	
@@ -141,7 +141,7 @@ public class GameController {
 	 * @param elements
 	 * @param pacman
 	 */
-	private void checkPacmanEatSomeOneAndOrTimeFruittoDesappear(ArrayList<Element> elements, Pacman pacman) {
+	private void checkPacmanEatSomeOneAndOrTimeFruitOrScoretoDesappear(ArrayList<Element> elements, Pacman pacman) {
 
         Element eTemp;
         for(int i =1; i < elements.size(); i++){
@@ -151,8 +151,12 @@ public class GameController {
                     elements.remove(eTemp);
                     if (eTemp instanceof Ghost){
                   	  pacman.minusNumberGhotstoEat();
-                  	  pacman.addScore(200*(4-pacman.getNumberGhosttoEat()));
-                  	  pacman.addRemainingScore(200*(4-pacman.getNumberGhosttoEat()));
+                  	  int scr = 200*((int)Math.pow(2, 3-pacman.getNumberGhosttoEat()));
+                  	  pacman.addScore(scr);
+                  	  pacman.addRemainingScore(scr);
+                  	  ScoreImage scoreImage = new ScoreImage(scr + ".png", (Ghost) eTemp);
+                  	  scoreImage.setStartTime(System.currentTimeMillis());
+                  	  elements.add(scoreImage);
                     } 
                     
                     if (eTemp instanceof ElementGivePoint){                     
@@ -190,6 +194,12 @@ public class GameController {
             	if (eTemp instanceof Strawberry){
             		long elapsed = System.currentTimeMillis()-((Strawberry)eTemp).getStartTime();
             		if (elapsed>=15000){
+            			elements.remove(eTemp);
+            		}
+            	}
+            	if(eTemp instanceof ScoreImage) {
+            		long elapsed = System.currentTimeMillis()-((ScoreImage)eTemp).getStartTime();
+            		if (elapsed>=1200){
             			elements.remove(eTemp);
             		}
             	}

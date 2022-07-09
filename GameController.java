@@ -130,7 +130,7 @@ public class GameController {
                 if(eTemp.isTransposable() && eTemp.isMortal()){
                     elements.remove(eTemp);
                     if (eTemp instanceof Ghost){
-                  	  pacman.minusNumberGhotstoEat();
+                      pacman.minusNumberGhotstoEat();
                   	  pacman.addScore(200*(4-pacman.getNumberGhosttoEat()));
                   	  pacman.addRemainingScore(200*(4-pacman.getNumberGhosttoEat()));
                     } 
@@ -233,7 +233,9 @@ public class GameController {
         			if(e instanceof Clyde){
         				((Clyde) e).changeGhosttoNormal("clyde.png");
         			}
-        			
+        			if(e instanceof Karina){
+        				((Karina) e).changeGhosttoNormal("Karina.png");
+        			}
                 }		
         			
         	}

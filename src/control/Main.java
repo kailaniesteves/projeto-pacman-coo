@@ -2,6 +2,8 @@ package control;
 
 import javax.swing.JFrame;
 
+import utils.AudioCerto;
+
 public class Main {
 
 	public static InitialScreen initialScreen; 
@@ -26,6 +28,8 @@ public class Main {
                 Main.gamePacMan = new GameScreen();
                 gamePacMan.setVisible(true);
                 gamePacMan.createBufferStrategy(2);
+                AudioCerto audioCerto = new AudioCerto();
+                audioCerto.AudioAcerto();
                 gamePacMan.go();
             }
         });

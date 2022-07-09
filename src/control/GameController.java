@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import utils.AudioCerto;
 import utils.Consts;
 import utils.Position;
 
@@ -64,6 +65,8 @@ public class GameController {
 				pacman.setMovDirection(0);
         	}
 			else {
+				AudioCerto audio = new AudioCerto();
+				audio.AudioMorte();
 				Main.gamePacMan.dispose();
 				JOptionPane.showMessageDialog(null, "Fim do jogo");
 				System.exit(0);
@@ -165,6 +168,8 @@ public class GameController {
                       pacman.addRemainingScore(((ElementGivePoint) eTemp).getNumberPoints());
                       
                       if (eTemp instanceof PacDots){
+                    	  AudioCerto audio = new AudioCerto();
+                    	  audio.AudioCome();
                     	  pacman.minusNumberDotstoEat();
                       }
                       if (eTemp instanceof PowerPellet){

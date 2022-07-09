@@ -8,6 +8,7 @@ import elements.Inky;
 import elements.PacDots;
 import elements.Pinky;
 import elements.PowerPellet;
+import elements.Purply;
 import elements.Pacman;
 import elements.Element;
 import elements.Wall;
@@ -109,6 +110,13 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener, Seria
         clyde.setPosition (8,9);
         this.addElement(clyde);
         
+        if(Main.level == 4) {
+        	pacman.moreNumberGhotstoEat();
+        	Purply purply=new Purply("Purply.png");
+            purply.setPosition (10,11);
+            this.addElement(purply);
+            
+        }
         
         for (int i=0;i<Consts.NUM_CELLS; i=i+1){
         	for(int j=0; j<Consts.NUM_CELLS; j=j+1){
@@ -149,8 +157,8 @@ public class GameScreen extends javax.swing.JFrame implements KeyListener, Seria
 		try {
 			FileInputStream fluxo = new FileInputStream("teste.ser");
 			ObjectInputStream objarq = new ObjectInputStream(fluxo);
-			ArrayList<Element> kailani = (ArrayList) objarq.readObject();
-			this.elemArray = kailani;
+			ArrayList<Element> savedElements = (ArrayList) objarq.readObject();
+			this.elemArray = savedElements;
 			pacman = (Pacman) elemArray.get(0);
 			this.stage = (Stage) objarq.readObject();
 			objarq.close(); 

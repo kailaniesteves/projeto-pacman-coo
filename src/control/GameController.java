@@ -157,6 +157,7 @@ public class GameController {
                   	  ScoreImage scoreImage = new ScoreImage(scr + ".png", (Ghost) eTemp);
                   	  scoreImage.setStartTime(System.currentTimeMillis());
                   	  elements.add(scoreImage);
+                  	  return;
                     } 
                     
                     if (eTemp instanceof ElementGivePoint){                     
@@ -199,7 +200,7 @@ public class GameController {
             	}
             	if(eTemp instanceof ScoreImage) {
             		long elapsed = System.currentTimeMillis()-((ScoreImage)eTemp).getStartTime();
-            		if (elapsed>=1200){
+            		if (elapsed>=1000){
             			elements.remove(eTemp);
             		}
             	}
@@ -281,7 +282,9 @@ public class GameController {
         			if(e instanceof Clyde){
         				((Clyde) e).changeGhosttoNormal("clyde.png");
         			}
-        			
+        			if(e instanceof Purply){
+        				((Purply) e).changeGhosttoNormal("Purply.png");
+        			}
                 }		
         			
         	}

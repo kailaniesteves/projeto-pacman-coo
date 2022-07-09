@@ -15,7 +15,7 @@ public class ScoreImage extends Element{
 	}
 	
 	/**
-     * Coleta o tempo inicial de coleta da cereja
+     * Coleta o tempo inicial de aparição da imagem de score
      * @return long startTime
      */
 	public long getStartTime() {
@@ -23,7 +23,7 @@ public class ScoreImage extends Element{
 	}
 	
 	/**
-	 * Altera o atributo 'startTime' de um objeto do tipo Cherry
+	 * Altera o atributo 'startTime' de um objeto do tipo ScoreImage
 	 * @param start
 	 */
 	public void setStartTime(long start){

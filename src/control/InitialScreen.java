@@ -35,17 +35,19 @@ public class InitialScreen extends javax.swing.JFrame {
 		//configureComboBox();
 	}
 	
+	/**
+	 * Cria a tela inicial, colocando o menu na parte superior usando uma JMenuBar,
+	 * e define o tamanho da altura e largura da tela
+	 */
 	private void configureInitialScreen(){
 
 		
 		JMenuBar menuBar = new JMenuBar();//Cria a barra de menu
 
-		JMenu abaMenu = new JMenu("Menu");//Adiciona as abas "Menu" e "Níveis"
-		JMenu abaNiveis = new JMenu("Níveis");
+		JMenu abaMenu = new JMenu("Menu");//Adiciona as abas "Menu"
 		
 		//Criando itens para colocar dentro do menu
-		JMenuItem itemIniciar = new JMenuItem("Iniciar");
-		JMenuItem itemOpen = new JMenuItem("Abrir jogo salvo(Open)");
+		JMenuItem itemOpen = new JMenuItem("Abrir jogo salvo (Open)");
 		JMenuItem itemNivel1 = new JMenuItem("Nível 1");
 		JMenuItem itemNivel2 = new JMenuItem("Nível 2");
 		JMenuItem itemNivel3 = new JMenuItem("Nível 3");
@@ -53,16 +55,14 @@ public class InitialScreen extends javax.swing.JFrame {
 		
 	
 		//Adicionando itens na aba
-		abaMenu.add(itemIniciar);
 		abaMenu.add(itemOpen);
-		abaNiveis.add(itemNivel1);
-		abaNiveis.add(itemNivel2);
-		abaNiveis.add(itemNivel3);
-		abaNiveis.add(itemNivel4);
+		abaMenu.add(itemNivel1);
+		abaMenu.add(itemNivel2);
+		abaMenu.add(itemNivel3);
+		abaMenu.add(itemNivel4);
 		
 		//Colocando a aba no menu
 		menuBar.add(abaMenu);
-		menuBar.add(abaNiveis);
 		
 		//Faz o jogo iniciar ao clicar no botão "nível 1" do menu
 		itemNivel1.addActionListener(new ActionListener(){

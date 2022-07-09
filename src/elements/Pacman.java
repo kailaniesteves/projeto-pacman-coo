@@ -95,7 +95,12 @@ public class Pacman extends ElementMove  {
 		this.numberLifes++;
 	}
 	
-
+	/**
+	 * Incrementa em 1, o atributo 'numberGhosttoEat' de um objeto do tipo Pacman (necessário para nível 4)
+	 */
+	public void moreNumberGhotstoEat() {
+		this.numberGhosttoEat++;
+	}
 	
 	/**
 	 * Incrementa em 1 o atributo 'numberDotstoEat' de um objeto tipo Pacman
